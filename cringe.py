@@ -17,9 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ══════════════════════════════════════════════
-#  SESSION STATE DEFAULTS
-# ══════════════════════════════════════════════
+
 def _init(key, val):
     if key not in st.session_state:
         st.session_state[key] = val
@@ -29,9 +27,6 @@ _init("theme",       "dark")
 _init("csv_path",    "./Prime_code/primes_with_gaps.csv")
 _init("prime_limit", 50_000)
 
-# ══════════════════════════════════════════════
-#  THEME TOKENS
-# ══════════════════════════════════════════════
 DARK = dict(
     bg="#07080d", surface="#0e1017", surface2="#131620",
     border="#1e2130", text="#e8eaf0", muted="#6b7280",
@@ -486,9 +481,6 @@ if page != "mersenne":
     </div>
     """, unsafe_allow_html=True)
 
-# ══════════════════════════════════════════════
-#  HERO
-# ══════════════════════════════════════════════
 META = {
     "overview":  ("PRIME NUMBERS",        "Statistical overview"),
     "pnt":       ("PRIME NUMBER THEOREM",  "π(x) vs x / log(x) — convergence validation"),
@@ -508,9 +500,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# ══════════════════════════════════════════════
-#  ① OVERVIEW
-# ══════════════════════════════════════════════
+
 if page == "overview":
     st.markdown('<p class="sec-head"><span>01</span>DATASET SUMMARY</p>', unsafe_allow_html=True)
     c1, c2 = st.columns(2)
@@ -696,9 +686,7 @@ elif page == "aks":
     fig.update_yaxes(title_text=f"C(n,k) mod {n_val}", title_font_color=T["muted"])
     chart(fig, f"C({n_val}, k) mod {n_val}", "Interior non-zero bars = composite witness")
 
-# ══════════════════════════════════════════════
-#  ⑥ DENSITY & DIGITS
-# ══════════════════════════════════════════════
+
 elif page == "density":
     st.markdown('<p class="sec-head"><span>06</span>DENSITY &amp; LAST DIGITS</p>',
                 unsafe_allow_html=True)
@@ -722,9 +710,6 @@ elif page == "density":
         fig.update_layout(barmode="group")
         chart(fig, "Last Digit Distribution", "Primes > 5 end only in 1, 3, 7, 9")
 
-# ══════════════════════════════════════════════
-#  ⑦ ML REGRESSION
-# ══════════════════════════════════════════════
 elif page == "ml":
     st.markdown('<p class="sec-head"><span>07</span>ML REGRESSION</p>', unsafe_allow_html=True)
     X      = primes_small[1:].reshape(-1, 1)
